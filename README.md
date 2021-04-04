@@ -1,10 +1,17 @@
 # fundandlost
 
 > A Mpvue project
+> 
+> author: lyz && dlf
 
 ## Build Setup
 
+开发
+
 ``` bash
+# 代码下载
+git clone https://github.com/lll2343/lostAndFound.git
+
 # 进入项目目录
 cd fundandlost
 
@@ -14,6 +21,8 @@ npm install
 # 开发时构建
 npm run dev
 ```
+
+发布
 
 ```bash
 # 打包构建
