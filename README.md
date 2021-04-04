@@ -5,16 +5,17 @@
 ## Build Setup
 
 ``` bash
-# 初始化项目
-vue init mpvue/mpvue-quickstart myproject
-cd myproject
+# 进入项目目录
+cd fundandlost
 
 # 安装依赖
-yarn
+npm install
 
 # 开发时构建
-npm dev
+npm run dev
+```
 
+```bash
 # 打包构建
 npm build
 
@@ -34,4 +35,6 @@ npm build:my
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+2021年春移动互联网技术作业
+
+<img src = 'https://ftp.bmp.ovh/imgs/2021/04/1673bdee3c15441a.jpg' />
