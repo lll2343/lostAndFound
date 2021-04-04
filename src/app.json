@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/logs/main",
+    "pages/addfound/main",
+    "pages/addlost/main",
+    "pages/mine/main",
+    "pages/list/main",
+    "pages/about/main",
+    "pages/mydetails/main",
+    "pages/mypost/main"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Found&Lost",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#58aafe",
+    "backgroundColor": "#fafafa",
+    "borderStyle": "white",
+
+    "list": [{
+      "text": "首页",
+      "pagePath": "pages/index/main",
+      "iconPath": "static/tabs/home.png",
+      "selectedIconPath": "static/tabs/home-active.png"
+    }, {
+      "text": "我的",
+      "pagePath": "pages/mine/main",
+      "iconPath": "static/tabs/mine.png",
+      "selectedIconPath": "static/tabs/mine-active.png"
+    }],
+    "position": "bottom"
+  }
+}
