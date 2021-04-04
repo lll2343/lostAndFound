@@ -5,8 +5,8 @@
           <ul>
               <!-- 失物名称 -->
               <li>
-                <label for="lostName" >失物名称</label>
-                <input type="text" id="lostName" v-model="itemDetail.Name">
+                <label for="lostName">失物名称</label>
+                <input type="text" id="lostName" v-model="itemDetail.Name" placeholder="丢失的物品名称">
               </li>
 
               <!-- 照片 -->

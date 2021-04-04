@@ -21,7 +21,7 @@ export default {
   data () {
     return {
       email: "2281250383@qq.com",
-      git: "xxxxxx"
+      git: "https://github.com/lll2343/lostAndFound"
     }
   },
   methods: {

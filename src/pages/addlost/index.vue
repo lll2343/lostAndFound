@@ -6,7 +6,7 @@
               <!-- 失物名称 -->
               <li>
                 <label for="lostName" >失物名称</label>
-                <input type="text" id="lostName" v-model="itemDetail.Name">
+                <input type="text" id="lostName" v-model="itemDetail.Name" placeholder="捡到的物品名称">
               </li>
 
               <!-- 照片 -->
