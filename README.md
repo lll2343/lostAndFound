@@ -37,4 +37,4 @@ npm run build --report
 
 2021年春移动互联网技术作业
 
-<img src = 'https://ftp.bmp.ovh/imgs/2021/04/1673bdee3c15441a.jpg' />
+<img src = 'https://ftp.bmp.ovh/imgs/2021/04/1673bdee3c15441a.jpg' width = "200" height = "200"/>
