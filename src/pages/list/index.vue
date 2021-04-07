@@ -26,6 +26,8 @@
               </div>
             </li>
           </ul>
+          <button @click="getData">获取</button>
+          <button @click="postData">post</button>
         </div>
 
         <div v-else class="detailItem">
@@ -50,12 +52,37 @@
 export default {
   data () {
     return {
-      tab: 1
+      tab: 1,
+      items: []
     }
   },
   methods: {
     changTab(index) {
       this.tab = index;
+    },
+    
+    // 获取传输端口
+    getData(){
+      this.$req.HttpCall("https://autumnfish.cn/api/joke/list")
+                .then((res)=>{
+                  console.log(res.data);
+                },
+                (err)=>{
+                  console.log("failed");
+                  console.log(err);
+                })
+    },
+    postData(){
+      this.$req.HttpPost('1212',{
+        id:1,
+        name:"zc"
+      }).then((res)=>{
+        console.log(res);
+      },
+      (err)=>{
+        console.log("failed post");
+        console.log(err);
+      })
     }
   },
   watch: {
