@@ -3,6 +3,7 @@
 const {mysql} = require('./../qcloud')
 
 module.exports = async(ctx) => {
+<<<<<<< HEAD
     const {lost_or_found} = ctx.request.query
     
     console.log("======lost_or_find======",lost_or_found)
@@ -16,11 +17,31 @@ module.exports = async(ctx) => {
         console.log(lost_or_found)
         console.log(itemlist)
 
+=======
+    const { lost_or_found } = ctx.request.query
+    
+    console.log("======lost_or_find======",lost_or_found)
+
+    console.log(ctx.request.query)
+
+    try{
+        // 通过 lost_or_found进行查找
+        const res = await mysql('item_list')
+                          .where('lost_or_found',lost_or_found)
+
+        console.log(res)
+
+        
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
         // 向前端传递
         ctx.state.data = {
             code: 0,
             msg:"success",
+<<<<<<< HEAD
             itemlist:itemlist
+=======
+            itemList: res
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
         }
         console.log("执行成功")
     }catch(e){

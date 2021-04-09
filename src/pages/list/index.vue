@@ -18,6 +18,7 @@
         <div v-if="tab===1" class="detailItem">
           <ul>
             <li v-for="item in items" :key=item.id>
+<<<<<<< HEAD
               <div class="item_details">
                 <div class="pic">
                   <img :src="item.get_pics[0]" alt="">
@@ -29,6 +30,13 @@
                   </h1>
                   <h3>{{item.more_detail}}</h3>
                 </div>
+=======
+              <img src="./../../../static/images/user.png" alt="" class="left">
+              <div class="right">
+                <h1>失物名称 : {{item.item_name}}</h1>
+                <h2>拾到地点 : {{item.get_position}}</h2>
+                <h3>拾到时间 : {{item.get_date}}</h3>
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
               </div>
             </li>
           </ul>
@@ -37,6 +45,7 @@
         <div v-else class="detailItem">
           <ul>
             <li v-for="item in items" :key=item.id>
+<<<<<<< HEAD
               <div class="item_details">
                 <div class="pic">
                   <img :src="item.get_pics[0]" alt="">
@@ -48,6 +57,13 @@
                   </h1>
                   <h3>{{item.more_detail}}</h3>
                 </div>
+=======
+              <img src="./../../../static/images/user.png" alt="" class="left">
+              <div class="right">
+                <h1>失物名称 : {{item.item_name}}</h1>
+                <h2>拾到地点 : {{item.get_position}}</h2>
+                <h3>拾到时间 : {{item.get_date}}</h3>
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
               </div>
             </li>
           </ul>
@@ -73,18 +89,35 @@ export default {
   },
   methods: {
     changTab(index) {
+<<<<<<< HEAD
       this.tab = index
+=======
+      this.tab = index;
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
       this.lost_or_found = index
 
       this.getItemList()
     },
+<<<<<<< HEAD
   
+=======
+    
+    // 获取传输端口
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
     async getItemList(){
+      console.log("getItemList")
       try{
+<<<<<<< HEAD
         const res = await get('/weapp/getitemlist',{lost_or_found:this.lost_or_found})
         
         this.items = res.itemlist
         this.dataChange()
+=======
+        const res = await get('/weapp/getitemlist',
+                  {lost_or_found:this.lost_or_found})
+
+        this.items = res.itemList
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
         console.log(this.items)
       }catch(e){
         showModel("请求失败","请下拉页面重试一下下~")
@@ -98,6 +131,7 @@ export default {
       }
     }
   },
+<<<<<<< HEAD
   mounted(){
     this.getItemList()
   },
@@ -105,6 +139,13 @@ export default {
     console.log("下拉刷新")
     this.getItemList()
     wx.stopPullDownRefresh()  
+=======
+  watch: {
+    
+  },
+  mounted(){
+    this.getItemList();
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
   }
 }
 </script>
