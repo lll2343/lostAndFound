@@ -34,4 +34,6 @@ router.post('/message', controllers.message.post)
 
 router.post('/createitem', controllers.createitem)
 
+router.get('/getitemlist', controllers.getitemlist)
+
 module.exports = router
