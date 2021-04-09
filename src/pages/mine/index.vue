@@ -7,10 +7,11 @@
 
         <div v-if="isShow" class="right">
           <p>{{name}}</p>
-          <h1>{{birth}}</h1>
+          <h1>{{city}}</h1>
         </div>
         <div v-else class="right">
-          <a href="#" @click="loginIn">登录</a>
+          <!-- <button open-type="getUserInfo" lang="zh_CN" class="login" @getuserinfo="loginIn">点击登录</button> -->
+          <button class="login" @click="getUserProfile">点击登录</button>
         </div>
 
       </div>
@@ -33,13 +34,15 @@
 </template>
 
 <script>
+import config from "./../../utils/config"
+import qcloud from "wafer2-client-sdk"
 
 export default {
   data () {
     return {
       headpicpath: require("./../../../static/images/user-big.png"),
       name: "吉昱阳",
-      birth: "2000-11-14",
+      city: "",
       isShow: false
     }
   },
@@ -50,22 +53,49 @@ export default {
       // throw {message: 'custom test'}
     },
     loginIn(){
-      console.log("点击登录")
-      // wx.login({
-      //   success: function(res) {
-      //     if(res.code) {
-      //       wx.getUserInfo({
-      //         success:function(res){
-      //           console.log(res);
+      console.log("点击登录");
 
-      //         }
-      //       })
-      //     }
-      //     else{
-      //       console.log("获取用户登录状态失败");
-      //     }
-      //   }
-      // })
+      qcloud.setLoginUrl(config.loginUrl);
+      qcloud.login({
+        success: (userInfo) => {
+          console.log('登录成功', userInfo);
+          this.loginSuccess(userInfo);
+          
+          // 显示信息 昵称和城市
+          this.isShow = !this.isShow;
+          this.name = userInfo.nickName;
+          this.city = userInfo.city;
+
+        },
+        fail: (err) => {
+          console.log(12122);
+          console.log('登录失败', err);
+        }
+      });
+    },
+    getUserProfile(){
+      wx.getUserProfile({
+        desc:"登录小程序",
+        success:(res)=>{
+          console.log("成功",res);
+
+          // 显示信息 昵称和城市
+          this.isShow = !this.isShow;
+          this.name = res.userInfo.nickName;
+          this.city = res.userInfo.city;
+          this.headpicpath = res.userInfo.avatarUrl;
+
+          // 保存到缓存
+          this.loginSuccess(res.userInfo);
+        },
+        fail: (err)=>{
+          console.log("err",err);
+        }
+      })
+    },
+    loginSuccess(userInfo){
+      // 将用户信息保存到缓存中
+      wx.setStorageSync("userinfo",userInfo);  
     }
   }
 }
@@ -126,8 +156,11 @@ export default {
   line-height: 40px;
 }
 
-.nav ul li a {
-  padding-left: 20px;
+.login{
+  display: block;
+  width: 250rpx;
+  margin-top: 100rpx;
+  margin-left: 0;
 }
 
 </style>

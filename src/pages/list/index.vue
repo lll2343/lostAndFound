@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import {get,showModel} from "./../../utils/util"
 
 export default {
   data () {
@@ -63,9 +64,9 @@ export default {
     
     // 获取传输端口
     getData(){
-      this.$req.HttpCall("https://autumnfish.cn/api/joke/list")
+      this.$req.HttpCall("https://api.map.baidu.com")
                 .then((res)=>{
-                  console.log(res.data);
+                  console.log(res);
                 },
                 (err)=>{
                   console.log("failed");
@@ -83,6 +84,14 @@ export default {
         console.log("failed post");
         console.log(err);
       })
+    },
+    async getItemList(){
+      try{
+        const res = await get('/weapp/getmark',)
+      }catch(e){
+        showModel("请求失败","请下拉页面重试一下下~")
+        console.log("后端返回的数据",e)
+      }
     }
   },
   watch: {

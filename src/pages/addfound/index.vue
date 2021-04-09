@@ -56,8 +56,10 @@
 
 <script>
 
-import zsUpimg from "./../../components/upimg";
+import zsUpimg from "./../../components/upimg"
 import selectDate from "./../../components/selectDate"
+
+import {showSuccess,post,showModel} from "./../../utils/util"
 
 export default {
   data () {
@@ -88,7 +90,6 @@ export default {
     getDate(e){
       this.itemDetail.Date = e.mp.detail.value;
     },
-
     // 当照片被选中，添加到this.itemDetail.Pics中
     choosed(val) {
       console.log("choosed")
@@ -104,34 +105,44 @@ export default {
       console.log("pics");
       console.log(this.itemDetail.Pics);
     },
-    // 表单提交
     submit() {
       // 判断是否为空
-      let title = '发布成功！';
       for(const key in this.itemDetail){
         if(key !== "Pics"){
           if(this.itemDetail[key] == null || this.itemDetail[key]== ""){
             console.log("不能为空");
             console.log(key);
-            title = "请完整填写失物名称,地点,描述和联系方式等信息"
-            wx.showToast({
-              title: title, // 标题
-              icon: 'none',  // 图标类型，默认success
-              duration: 1000  // 提示窗停留时间，默认1500ms
-            })
+            showModel("发布失败","请完整填写失物信息");
             return;
           }
         }
       }
 
-      wx.showToast({
-        title: title, // 标题
-        icon: 'success',  // 图标类型，默认success
-        duration: 1000  // 提示窗停留时间，默认1500ms
-      })
-      console.log(this.itemDetail)
-
       // 接下来就是提交了！！！
+      this.postItem();
+
+    },
+    // 发送异步请求
+    async postItem(){
+      const data = {
+        lost_or_found: 1,
+        user_name: wx.getStorageSync('userinfo').nickName,
+        item_name: this.itemDetail.Name,
+        get_pics: this.itemDetail.Pics.join(","),// 转成字符串
+        get_date: this.itemDetail.Date,
+        get_position: this.itemDetail.Position,
+        more_detail: this.itemDetail.More,
+        tel: this.itemDetail.Tel
+      }
+      try{
+        const res = await post("/weapp/createitem",data)
+        showSuccess("发布成功")
+        console.log("后端发来的信息")
+        console.log(res)
+      }catch(e){
+        console.log("从后端发来的失败信息",e)
+        showModel("发布失败","服务器出了一点问题，请稍后再试")
+      }
     }
   },
   watch: {
