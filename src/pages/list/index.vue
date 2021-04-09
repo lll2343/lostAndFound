@@ -19,32 +19,6 @@
           <ul>
             <li v-for="item in items" :key=item.id>
 <<<<<<< HEAD
-              <div class="item_details">
-                <div class="pic">
-                  <img :src="item.get_pics[0]" alt="">
-                </div>
-                <div class="content">
-                  <h1>
-                    {{item.item_name}}
-                    <span>{{item.create_time}}</span>
-                  </h1>
-                  <h3>{{item.more_detail}}</h3>
-                </div>
-=======
-              <img src="./../../../static/images/user.png" alt="" class="left">
-              <div class="right">
-                <h1>失物名称 : {{item.item_name}}</h1>
-                <h2>拾到地点 : {{item.get_position}}</h2>
-                <h3>拾到时间 : {{item.get_date}}</h3>
->>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div v-else class="detailItem">
-          <ul>
-            <li v-for="item in items" :key=item.id>
 <<<<<<< HEAD
               <div class="item_details">
                 <div class="pic">
@@ -58,11 +32,49 @@
                   <h3>{{item.more_detail}}</h3>
                 </div>
 =======
+=======
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
               <img src="./../../../static/images/user.png" alt="" class="left">
               <div class="right">
                 <h1>失物名称 : {{item.item_name}}</h1>
                 <h2>拾到地点 : {{item.get_position}}</h2>
                 <h3>拾到时间 : {{item.get_date}}</h3>
+<<<<<<< HEAD
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
+=======
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div v-else class="detailItem">
+          <ul>
+            <li v-for="item in items" :key=item.id>
+<<<<<<< HEAD
+<<<<<<< HEAD
+              <div class="item_details">
+                <div class="pic">
+                  <img :src="item.get_pics[0]" alt="">
+                </div>
+                <div class="content">
+                  <h1>
+                    {{item.item_name}}
+                    <span>{{item.create_time}}</span>
+                  </h1>
+                  <h3>{{item.more_detail}}</h3>
+                </div>
+=======
+=======
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
+              <img src="./../../../static/images/user.png" alt="" class="left">
+              <div class="right">
+                <h1>失物名称 : {{item.item_name}}</h1>
+                <h2>拾到地点 : {{item.get_position}}</h2>
+                <h3>拾到时间 : {{item.get_date}}</h3>
+<<<<<<< HEAD
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
+=======
 >>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
               </div>
             </li>
@@ -93,6 +105,9 @@ export default {
       this.tab = index
 =======
       this.tab = index;
+<<<<<<< HEAD
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
+=======
 >>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
       this.lost_or_found = index
 
@@ -103,6 +118,7 @@ export default {
 =======
     
     // 获取传输端口
+<<<<<<< HEAD
 >>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
     async getItemList(){
       console.log("getItemList")
@@ -113,10 +129,18 @@ export default {
         this.items = res.itemlist
         this.dataChange()
 =======
+=======
+    async getItemList(){
+      console.log("getItemList")
+      try{
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
         const res = await get('/weapp/getitemlist',
                   {lost_or_found:this.lost_or_found})
 
         this.items = res.itemList
+<<<<<<< HEAD
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
+=======
 >>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
         console.log(this.items)
       }catch(e){
@@ -145,6 +169,9 @@ export default {
   },
   mounted(){
     this.getItemList();
+<<<<<<< HEAD
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
+=======
 >>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
   }
 }

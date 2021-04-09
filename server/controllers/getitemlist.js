@@ -4,6 +4,7 @@ const {mysql} = require('./../qcloud')
 
 module.exports = async(ctx) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     const {lost_or_found} = ctx.request.query
     
     console.log("======lost_or_find======",lost_or_found)
@@ -18,6 +19,8 @@ module.exports = async(ctx) => {
         console.log(itemlist)
 
 =======
+=======
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
     const { lost_or_found } = ctx.request.query
     
     console.log("======lost_or_find======",lost_or_found)
@@ -32,13 +35,20 @@ module.exports = async(ctx) => {
         console.log(res)
 
         
+<<<<<<< HEAD
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
+=======
 >>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
         // 向前端传递
         ctx.state.data = {
             code: 0,
             msg:"success",
 <<<<<<< HEAD
+<<<<<<< HEAD
             itemlist:itemlist
+=======
+            itemList: res
+>>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
 =======
             itemList: res
 >>>>>>> 570e55abb70dc8b54c9dc0f202f33dac7d90d0d3
