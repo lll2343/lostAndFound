@@ -46,7 +46,6 @@ export default {
       isShow: false
     }
   },
-
   methods: {
     clickHandle (ev) {
       console.log('clickHandle:', ev)

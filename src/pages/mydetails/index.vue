@@ -1,6 +1,15 @@
 <template>
   <div>
-    详细资料列表
+    <div v-if="isShow" class="detail">
+      <img :src="userinfo.avatarUrl" alt="">
+      <h1>{{userinfo.nickName}}</h1>
+      <h2>{{userinfo.gender}}</h2>
+      <h3>{{userinfo.country+" "+userinfo.province+" "+userinfo.city}}</h3>
+    </div>
+
+    <div v-else class="unlogin">
+      亲~需要先登录~
+    </div>
     
   </div>
 </template>
@@ -9,7 +18,8 @@
 export default {
   data() {
     return {
-      userinfo: {}
+      userinfo: {},
+      isShow: false
     }
   },
   methods: {
@@ -17,9 +27,16 @@ export default {
   mounted(){
     const value = wx.getStorageSync('userinfo');
     if(value.nickName){
-      this.userinfo = value;
-      console.log("this.userinfo");
-      console.log(this.userinfo);
+      this.isShow = true
+      this.userinfo = value
+      if(this.userinfo.gender == 1){
+        this.userinfo.gender = "男"
+      }
+      else{
+        this.userinfo.gender = "女"
+      }
+      console.log("this.userinfo")
+      console.log(this.userinfo)
     }
   }
 
@@ -28,6 +45,35 @@ export default {
 </script>
 
 <style scoped>
+.detail {
+  text-align: center;
+}
 
+h1,h2,h3 {
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 25px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+img {
+  display: block;
+  width:200rpx;
+  height: 200rpx;
+  margin:0 auto;
+  margin-top:200rpx;
+}
+
+.unlogin {
+  display: block;
+  width: 100%;
+  margin-top:300rpx;
+  text-align: center;
+} 
 
 </style>

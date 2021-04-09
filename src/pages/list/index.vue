@@ -18,11 +18,17 @@
         <div v-if="tab===1" class="detailItem">
           <ul>
             <li v-for="item in items" :key=item.id>
-              <img src="./../../../static/images/user.png" alt="" class="left">
-              <div class="right">
-                <h1>失物名称 : {{item.item_name}}</h1>
-                <h2>拾到地点 : {{item.get_position}}</h2>
-                <h3>拾到时间 : {{item.get_date}}</h3>
+              <div class="item_details">
+                <div class="pic">
+                  <img :src="item.get_pics[0]" alt="">
+                </div>
+                <div class="content">
+                  <h1>
+                    {{item.item_name}}
+                    <span>{{item.create_time}}</span>
+                  </h1>
+                  <h3>{{item.more_detail}}</h3>
+                </div>
               </div>
             </li>
           </ul>
@@ -31,11 +37,17 @@
         <div v-else class="detailItem">
           <ul>
             <li v-for="item in items" :key=item.id>
-              <img src="./../../../static/images/user.png" alt="" class="left">
-              <div class="right">
-                <h1>失物名称 : {{item.item_name}}</h1>
-                <h2>丢失地点 : {{item.get_position}}</h2>
-                <h3>丢失时间 : {{item.get_date}}</h3>
+              <div class="item_details">
+                <div class="pic">
+                  <img :src="item.get_pics[0]" alt="">
+                </div>
+                <div class="content">
+                  <h1>
+                    {{item.item_name}}
+                    <span>{{item.create_time}}</span>
+                  </h1>
+                  <h3>{{item.more_detail}}</h3>
+                </div>
               </div>
             </li>
           </ul>
@@ -49,6 +61,7 @@
 
 <script>
 import {get,showModel} from "./../../utils/util"
+import {formatTime} from "./../../utils/index"
 
 export default {
   data () {
@@ -71,18 +84,27 @@ export default {
         const res = await get('/weapp/getitemlist',{lost_or_found:this.lost_or_found})
         
         this.items = res.itemlist
-        console.log(res.itemlist)
+        this.dataChange()
+        console.log(this.items)
       }catch(e){
         showModel("请求失败","请下拉页面重试一下下~")
         console.log("后端返回的数据",e)
       }
+    },
+    dataChange(){
+      for(var key in this.items){
+        this.items[key].create_time = formatTime(new Date(this.items[key].create_time))
+        this.items[key].get_pics = this.items[key].get_pics.split(',')
+      }
     }
-  },
-  watch: {
-    
   },
   mounted(){
     this.getItemList()
+  },
+  onPullDownRefresh(){
+    console.log("下拉刷新")
+    this.getItemList()
+    wx.stopPullDownRefresh()  
   }
 }
 </script>
@@ -112,37 +134,50 @@ export default {
 .detailItem ul li{
   display: block;
   width: 100%;
-  height: 170rpx;
-  border:1rpx solid #ccc;
-  border-radius: 10rpx;
+}
+
+.item_details {
+  display: flex;
+  width: 100%;
+  height: 270rpx;
+  border:1px solid #ccc;
+  border-radius: 10px;
   margin-top:20rpx;
-  box-shadow: 5rpx 5rpx 5rpx #ddd;
+  box-shadow: 5px 5px 5px #ddd;
 }
 
-.left {
-  float: left;
-  width:170rpx;
-  height: 170rpx;
-  border-right: 1rpx solid #ccc;
+.item_details .pic {
+  display: block;
+  width:38%;
+  height: 100%;
+  border-right: 1px solid #ddd;
 }
 
-.right {
-  /* 使用ccs3盒子模型 */
+.item_details .pic img{
+  width:100%;
+  height: 100%;
+}
+
+.item_details .content{
+  display: block;
   box-sizing: border-box;
-  float: right;
-  width: 520rpx;
-  height: 140rpx;
-  /* border-left: 1rpx solid #ccc; */
-  margin: 20rpx;
+  width: 60%;
+  height: 100%;
+  padding-left: 40rpx;
+  padding-top: 60rpx
 }
 
-.right h2 {
-  font-weight: 20;
+.item_details .content h1{
+  font-size: 20px;
 }
 
-.right h3 {
-  font-weight: 20;
-  color: #888;
+.item_details .content h1 span {
+  font-size: 14px;
+  padding-left: 30rpx;
+}
+
+.item_details .content h3 {
+  margin-top: 40rpx;
 }
 
 </style>

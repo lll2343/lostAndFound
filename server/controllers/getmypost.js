@@ -3,17 +3,16 @@
 const {mysql} = require('./../qcloud')
 
 module.exports = async(ctx) => {
-    const {lost_or_found} = ctx.request.query
+    const {user_name} = ctx.request.query
     
-    console.log("======lost_or_find======",lost_or_found)
+    console.log("======user_name======",user_name)
 
     console.log(ctx.request.body)
     try{
         // 获取数据
         const itemlist = await mysql('item_list')
-                                .where('lost_or_found',lost_or_found)
+                                .where('user_name',user_name)
         
-        console.log(lost_or_found)
         console.log(itemlist)
 
         // 向前端传递

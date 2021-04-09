@@ -1,5 +1,5 @@
 <template>
-  <div @click="clickHandle">
+  <div>
       <div class="con_1 post">
         <a href="./../addfound/main">
           <img src="./../../../static/images/post.png" alt="">
@@ -28,14 +28,14 @@
 export default {
   data () {
     return {
-      
     }
   },
-
   methods: {
-    clickHandle (ev) {
-      console.log('clickHandle:', ev)
-      // throw {message: 'custom test'}
+  },
+  onShareAppMessage(){
+    return {
+      title:"失物",
+      path: "/pages/index/main"
     }
   }
 }
