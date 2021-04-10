@@ -8,7 +8,8 @@
     "pages/list/main",
     "pages/about/main",
     "pages/mydetails/main",
-    "pages/mypost/main"
+    "pages/mypost/main",
+    "pages/details/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

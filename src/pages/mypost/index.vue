@@ -7,7 +7,7 @@
 
       <div v-else>
         <ul>
-            <li v-for="item in items" :key=item.id>
+            <li v-for="item in items" :key="item.id" @click="toDetail(item.id)">
               <div class="item_details">
                 <div class="pic">
                   <img :src="item.get_pics[0]" alt="">
@@ -57,6 +57,13 @@ export default {
         this.items[key].create_time = formatTime(new Date(this.items[key].create_time))
         this.items[key].get_pics = this.items[key].get_pics.split(',')
       }
+    },
+    toDetail(id){
+      console.log(id)
+      
+      wx.navigateTo({
+        url: '/pages/details/main?id=' + id,
+      })
     }
   },
   watch: {
